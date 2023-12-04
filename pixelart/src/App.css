@@ -12,15 +12,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.App-spin {
+  font-size: 10rem;
 }
 
 .App-header {
@@ -38,12 +43,60 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.buttons {
+  color: white;
+  border-radius: 25px;
+  width: 7vw;
+  margin-right: 0vw;
+  transition: all .25s ease-out;
+  border: none;
+  background: linear-gradient(45deg, red, rgb(67, 67, 255));
+  box-shadow: 1px 1px 1px 1px #282c34
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.buttons:hover {
+  transition: all .25s ease-in-out;
+  width: 7.5vw;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px 1px #282c34
+}
+
+.button-89 {
+  --b: 3px;
+  /* border thickness */
+  --s: .45em;
+  /* size of the corner */
+  --color: #373B44;
+
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 1rem;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible {
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  color: #fff;
+}
+
+.preset-colours:hover {
+  cursor: pointer;
 }
