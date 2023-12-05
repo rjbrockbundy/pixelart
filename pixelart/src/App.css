@@ -13,6 +13,10 @@
   text-overflow: ellipsis;
 }
 
+.grid-row {
+  padding: 2vh 5vw 5vw 1vh;
+}
+
 .App-logo {
   position: absolute;
   height: 100vh;
