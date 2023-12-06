@@ -1,0 +1,16 @@
+.modal-popup {
+    font-family: 'VT323', sans-serif;
+    font-size: 2rem;
+    color: white
+}
+
+.modal-body {
+    background: rgba(28, 29, 34, 1) !important;
+}
+
+.modal-input {
+    font-size: 1.2rem !important;
+}
+
+.modal-foot {
+}

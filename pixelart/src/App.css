@@ -2,6 +2,7 @@
   width: 100vw;
 }
 
+
 .maingrid {
   width: 50px;
   height: 50px;
@@ -11,6 +12,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.grid-container {
+  font-family: 'VT323', sans-serif;
+  position: relative;
+  /* Set position to relative */
+
 }
 
 .grid-row {
@@ -66,41 +74,78 @@
 }
 
 .button-89 {
-  --b: 3px;
+  --b: 3px !important;
   /* border thickness */
-  --s: .45em;
+  --s: .45em !important;
   /* size of the corner */
-  --color: #373B44;
+  --color: white !important;
 
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s)) !important;
+  color: var(--color) !important;
+  --_p: var(--s) !important;
   background:
-    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 1rem;
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p)) !important;
+  transition: .3s linear, color 0s, background-color 0s !important;
+  outline: var(--b) solid #0000 !important;
+  outline-offset: .6em !important;
+  font-size: 1rem !important;
 
-  border: 0;
+  border: 0 !important;
 
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: manipulation !important;
 }
 
 .button-89:hover,
 .button-89:focus-visible {
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
+  --_p: 0px !important;
+  outline-color: var(--color) !important;
+  outline-offset: .05em !important;
 }
 
 .button-89:active {
-  background: var(--color);
-  color: #fff;
+  background: var(--color) !important;
+  color: #000 !important;
 }
 
 .preset-colours:hover {
   cursor: pointer;
+}
+
+.color-picker {
+  font-size: '500px' !important;
+}
+
+.collapsible-overlay {
+  position: absolute;
+  right: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  user-select: none;
+  top: 2vh;
+  /* Adjust padding as needed */
+}
+
+.overlay-content {
+  /* Set the width of the overlay content as needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Adjust the overlay background color and opacity */
+  color: white;
+  padding: 20px;
+  width: 30em;
+  z-index: 999;
+  top: 0;
+  /* Adjust padding as needed */
+}
+
+.popup-button {
+  background: none !important;
+  border: none !important;
+  filter: invert(1) !important;
+  mix-blend-mode: difference !important;
+  position: absolute;
+  right: 0;
+  z-index: 1000;
 }
