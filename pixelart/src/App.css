@@ -125,6 +125,7 @@
   align-items: flex-end;
   user-select: none;
   top: 2vh;
+  width: 100vw !important;
   /* Adjust padding as needed */
 }
 
@@ -135,10 +136,9 @@
   color: white;
   padding: 20px;
   width: 30em;
-  z-index: 999;
+  z-index: 999 !important;
   top: 0;
   position: fixed;
-  right: clamp(0vw, var(--position, position), 100vw - 1vw) !important; 
   /* Adjust padding as needed */
 }
 
@@ -148,7 +148,5 @@
   filter: invert(1) !important;
   mix-blend-mode: difference !important;
   position: fixed;
-
-  right: clamp(0vw, var(--position, position), 100%);
-  z-index: 1000;
+  z-index: 1000 !important;
 }
