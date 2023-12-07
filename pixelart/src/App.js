@@ -75,29 +75,34 @@ function App() {
     <Container fluid className="grid-container" onMouseUp={() => setIsMouseDown(false)}>
       <Row style={{ background: 'rgba(19,19,19,1)', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className='grid-row'>
         <Col />
-        <Col id="grid" ref={gridRef} style={{ minWidth: '904px', textAlign: 'center', marginLeft: '10vw' }}>
-          {gridArray.map((row, rowIndex) => (
-            <Row key={rowIndex}>
-              {row.map((col, colIndex) => (
-                <div
-                  key={colIndex}
-                  style={{
-                    width: '25px', // Adjust the width as needed
-                    height: '25px', // Adjust the height as needed
-                    backgroundColor: divColors[rowIndex][colIndex],
-                    border: gridBorder ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(0,0,0,0.0)',
-                    zIndex: 200,
-                  }}
-                  onMouseDown={() => { setIsMouseDown(!isMouseDown); handleDivClick(rowIndex, colIndex) }}
-                  onMouseEnter={() => isMouseDown && !bucketFill && handleDivClick(rowIndex, colIndex)}
-                >
-                </div>
-              ))}
-            </Row>
+        <Col style={{ textAlign: 'center' }}>
+          <div id="grid" ref={gridRef} style={{ minWidth: '832px', maxWidth: '832px', left: '32px' }}>
+            {gridArray.map((row, rowIndex) => (
+              <Row key={rowIndex} style={{
+                paddingLeft: '12px',
+              }}>
+                {row.map((col, colIndex) => (
+                  <div
+                    key={colIndex}
+                    style={{
+                      width: '25px', // Adjust the width as needed
+                      height: '25px', // Adjust the height as needed
+                      backgroundColor: divColors[rowIndex][colIndex],
+                      border: gridBorder ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(0,0,0,0.0)',
+                      zIndex: 200,
+                    }}
+                    onMouseDown={() => { setIsMouseDown(!isMouseDown); handleDivClick(rowIndex, colIndex) }}
+                    onMouseEnter={() => isMouseDown && !bucketFill && handleDivClick(rowIndex, colIndex)}
+                  >
+                  </div>
+                ))}
+              </Row>
 
-          ))}
+            ))}
+          </div>
         </Col>
         <Col />
+
         <div className="collapsible-overlay">
           <Button onClick={toggleCollapse} variant='none' className='popup-button'>
             {isCollapsed ? <FontAwesomeIcon icon={faCircleChevronLeft} size='2xl' /> : <FontAwesomeIcon icon={faCircleChevronRight} size='2xl' />}

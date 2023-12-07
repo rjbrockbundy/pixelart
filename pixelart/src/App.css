@@ -137,6 +137,8 @@
   width: 30em;
   z-index: 999;
   top: 0;
+  position: fixed;
+  right: clamp(0vw, var(--position, position), 100vw - 1vw) !important; 
   /* Adjust padding as needed */
 }
 
@@ -145,7 +147,8 @@
   border: none !important;
   filter: invert(1) !important;
   mix-blend-mode: difference !important;
-  position: absolute;
-  right: 0;
+  position: fixed;
+
+  right: clamp(0vw, var(--position, position), 100%);
   z-index: 1000;
 }
