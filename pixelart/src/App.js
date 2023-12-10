@@ -17,6 +17,9 @@ function App() {
     gridArray.map(() => Array(32).fill('#FFFFFF'))
   );
   const [color, setColor] = useColor("#000");
+
+  const [savedColors, setSavedColors] = useState([]);
+
   const [showSaveBox, setShowSaveBox] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [gridBorder, setGridBorder] = useState(true);
@@ -69,6 +72,33 @@ function App() {
     setShowSaveBox(false);
   }
 
+  const addToSavedColors = (newColor) => {
+    console.log('newColor:', newColor);
+    console.log('savedColors before:', savedColors);
+
+    if (savedColors.length >= 9) {
+      // If the maximum number of colors is reached, remove the oldest one
+      const newColors = [...savedColors.slice(1), newColor];
+      console.log('newColors:', newColors);
+
+      setSavedColors(newColors);
+    } else {
+      // Add the new color to the list
+      setSavedColors([...savedColors, newColor]);
+      console.log('newColors empty:', savedColors);
+
+    }
+  };
+
+  const selectSavedColor = (index) => {
+    // Update the selected color using the saved color at the specified index
+    if (savedColors[index]) {
+      setColor(savedColors[index]);
+      console.log(savedColors[index]);
+
+    }
+  };
+
   const presetColors = ['#FF0000', '#FFA500', '#FFFF00', '#008000', '#0000FF', '#800080', '#000000', '#FFFFFF', '#808080'];
 
   return (
@@ -103,13 +133,13 @@ function App() {
         </Col>
         <Col />
 
-        <div className="collapsible-overlay">
+        <div className="collapsible-overlay" >
           <Button onClick={toggleCollapse} variant='none' className='popup-button'>
             {isCollapsed ? <FontAwesomeIcon icon={faCircleChevronLeft} size='2xl' /> : <FontAwesomeIcon icon={faCircleChevronRight} size='2xl' />}
           </Button>
 
-          <Collapse in={!isCollapsed} dimension='width' timeout={200} unmountOnExit appear={true}>
-            <div style={{ background: 'rgba(28,29,34,1)', color: 'white', textAlign: 'center', borderRadius: '50px 0 0 50px' }} className='overlay-content'>
+          <Collapse in={!isCollapsed} dimension='width' timeout={200} unmountOnExit appear={true} >
+            <div style={{ background: 'rgba(28,29,34,1)', color: 'white', textAlign: 'center', borderRadius: '50px 0 0 50px', overflowY: 'auto', height: '100%' }} className='overlay-content'>
               <span style={{ fontSize: '3rem', fontWeight: '500' }}>Color Picker</span>
               <hr />
               <Row>
@@ -132,6 +162,32 @@ function App() {
                 ))}
               </Row>
               <ColorPicker color={color} onChange={setColor} hideAlpha={true} className="color-picker" />
+              <hr />
+              <Row >
+                <h3>Saved Colors</h3>
+
+                {savedColors.map((savedColor, index) => (
+                  <Col
+                    key={index}
+                    style={{
+                      width: '25px', // Adjust the width as needed
+                      maxWidth: '50px',
+                      height: '25px', // Adjust the height as needed
+                      fontSize: '10px',
+                      textAlign: 'center',
+                      overflow: 'hidden', // Hide overflow content
+                      borderRadius: '25px',
+                      marginBottom: '5px',
+                      zIndex: 1000001,
+                      backgroundColor: savedColor.hex,
+                    }}
+                    onClick={() => selectSavedColor(index)}
+                  ></Col>
+                ))}
+              </Row>
+              <button className="button-89" onClick={() => addToSavedColors(color)}>
+                Save Color
+              </button>
               <hr />
               <Row style={{ marginTop: '2vh' }}>
                 <Col style={{ justifyContent: 'space-between', display: 'flex' }}>

@@ -149,4 +149,5 @@
   mix-blend-mode: difference !important;
   position: fixed;
   z-index: 1000 !important;
+  right: 17px;
 }
