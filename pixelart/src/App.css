@@ -151,3 +151,13 @@
   z-index: 1000 !important;
   right: 17px;
 }
+
+.popup-button-close {
+  background: none !important;
+  border: none !important;
+  filter: invert(1) !important;
+  mix-blend-mode: difference !important;
+  z-index: 1000 !important;
+  position: relative;
+  right: 17px;
+}

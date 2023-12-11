@@ -73,20 +73,13 @@ function App() {
   }
 
   const addToSavedColors = (newColor) => {
-    console.log('newColor:', newColor);
-    console.log('savedColors before:', savedColors);
-
     if (savedColors.length >= 9) {
       // If the maximum number of colors is reached, remove the oldest one
       const newColors = [...savedColors.slice(1), newColor];
-      console.log('newColors:', newColors);
-
       setSavedColors(newColors);
     } else {
       // Add the new color to the list
       setSavedColors([...savedColors, newColor]);
-      console.log('newColors empty:', savedColors);
-
     }
   };
 
@@ -94,9 +87,12 @@ function App() {
     // Update the selected color using the saved color at the specified index
     if (savedColors[index]) {
       setColor(savedColors[index]);
-      console.log(savedColors[index]);
-
     }
+  };
+
+  const resetDivColors = () => {
+    const newColors = gridArray.map(() => Array(32).fill('#FFFFFF'));
+    setDivColors(newColors);
   };
 
   const presetColors = ['#FF0000', '#FFA500', '#FFFF00', '#008000', '#0000FF', '#800080', '#000000', '#FFFFFF', '#808080'];
@@ -135,12 +131,21 @@ function App() {
 
         <div className="collapsible-overlay" >
           <Button onClick={toggleCollapse} variant='none' className='popup-button'>
-            {isCollapsed ? <FontAwesomeIcon icon={faCircleChevronLeft} size='2xl' /> : <FontAwesomeIcon icon={faCircleChevronRight} size='2xl' />}
+            {isCollapsed ? <FontAwesomeIcon icon={faCircleChevronLeft} size='2xl' /> : null}
           </Button>
 
           <Collapse in={!isCollapsed} dimension='width' timeout={200} unmountOnExit appear={true} >
             <div style={{ background: 'rgba(28,29,34,1)', color: 'white', textAlign: 'center', borderRadius: '50px 0 0 50px', overflowY: 'auto', height: '100%' }} className='overlay-content'>
-              <span style={{ fontSize: '3rem', fontWeight: '500' }}>Color Picker</span>
+              <Row>
+                <Col md={11}>
+                  <span style={{ fontSize: '3rem', fontWeight: '500' }}>Color Picker</span>
+                </Col>
+                <Col md={1}>
+                  <button onClick={toggleCollapse} variant='none' className='popup-button-close'>
+                    {isCollapsed ? null : <FontAwesomeIcon icon={faCircleChevronRight} size='2xl' />}
+                  </button>
+                </Col>
+              </Row>
               <hr />
               <Row>
                 {presetColors.map((mapColor, index) => (
@@ -169,6 +174,7 @@ function App() {
                 {savedColors.map((savedColor, index) => (
                   <Col
                     key={index}
+                    className='preset-colours'
                     style={{
                       width: '25px', // Adjust the width as needed
                       maxWidth: '50px',
@@ -200,6 +206,13 @@ function App() {
                     {bucketFill ? <FontAwesomeIcon icon={faPen} id="penButton" /> : <FontAwesomeIcon id="bucketButton" icon={faFillDrip} />}
                   </button>
                 </Col>
+              </Row>
+              <Row style={{ marginTop: '2vh' }}>
+                <Col />
+                <Col>
+                  <button className='button-89' onClick={resetDivColors}>Reset</button>
+                </Col>
+                <Col />
               </Row>
             </div>
           </Collapse>
