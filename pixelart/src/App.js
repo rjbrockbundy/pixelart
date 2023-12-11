@@ -135,7 +135,7 @@ function App() {
           </Button>
 
           <Collapse in={!isCollapsed} dimension='width' timeout={200} unmountOnExit appear={true} >
-            <div style={{ background: 'rgba(28,29,34,1)', color: 'white', textAlign: 'center', borderRadius: '50px 0 0 50px', overflowY: 'auto', height: '100%' }} className='overlay-content'>
+            <div style={{ background: 'rgba(28,29,34,1)', color: 'white', textAlign: 'center', borderRadius: '50px 0 0 50px', overflowY: 'auto', height: '100%', overflowX: 'hidden' }} className='overlay-content'>
               <Row>
                 <Col md={11}>
                   <span style={{ fontSize: '3rem', fontWeight: '500' }}>Color Picker</span>
@@ -207,7 +207,7 @@ function App() {
                   </button>
                 </Col>
               </Row>
-              <Row style={{ marginTop: '2vh' }}>
+              <Row>
                 <Col />
                 <Col>
                   <button className='button-89' onClick={resetDivColors}>Reset</button>
